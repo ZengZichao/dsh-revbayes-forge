@@ -1,0 +1,60 @@
+{
+  "prefix": "PPS",
+  "canonical": [
+    {
+      "name": "pps",
+      "golden": "pps.Rev",
+      "spec": {
+        "analysis": "pps",
+        "name": "pps_demo",
+        "base_script": "data <- readDiscreteCharacterData(\"data/dna.nex\")\ntaxa <- data.taxa()\nnum_taxa <- data.ntaxa()\nnum_branches <- 2 * num_taxa - 3\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\nQ <- fnJC(4)\ntopology ~ dnUniformTopology(taxa)\nmoves.append( mvNNI(topology, weight=num_taxa/2.0) )\nfor (i in 1:num_branches) {\n    bl[i] ~ dnExponential(10.0)\n    moves.append( mvScale(bl[i]) )\n}\npsi := fnTreeAssembly(topology, bl)\nseq ~ dnPhyloCTMC(tree=psi, Q=Q, type=\"DNA\")\nseq.clamp(data)\nmymodel = model(seq)",
+        "replicates": 20,
+        "thinning": 2,
+        "mcmc": {
+          "generations": 2000
+        }
+      }
+    },
+    {
+      "name": "pps_morphology",
+      "golden": "pps_morphology.Rev",
+      "spec": {
+        "analysis": "pps_morphology",
+        "name": "pps_morph_demo",
+        "base_script": "morpho <- readDiscreteCharacterData(\"data/morph.nex\")\ntaxa <- morpho.taxa()\nnum_taxa <- morpho.ntaxa()\nnum_branches <- 2 * num_taxa - 3\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\nQ <- fnJC(2)\ntopology ~ dnUniformTopology(taxa)\nmoves.append( mvNNI(topology, weight=num_taxa/2.0) )\nfor (i in 1:num_branches) {\n    bl[i] ~ dnExponential(10.0)\n    moves.append( mvScale(bl[i]) )\n}\npsi := fnTreeAssembly(topology, bl)\nseq ~ dnPhyloCTMC(tree=psi, Q=Q, type=\"Standard\")\nseq.clamp(morpho)\nmymodel = model(seq)",
+        "replicates": 20,
+        "thinning": 2,
+        "mcmc": {
+          "generations": 2000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "no base",
+      "spec": {
+        "analysis": "pps"
+      },
+      "code": "PPS1001"
+    },
+    {
+      "name": "bad replicates",
+      "spec": {
+        "analysis": "pps",
+        "base_script": "data <- readDiscreteCharacterData(\"data/dna.nex\")\ntaxa <- data.taxa()\nnum_taxa <- data.ntaxa()\nnum_branches <- 2 * num_taxa - 3\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\nQ <- fnJC(4)\ntopology ~ dnUniformTopology(taxa)\nmoves.append( mvNNI(topology, weight=num_taxa/2.0) )\nfor (i in 1:num_branches) {\n    bl[i] ~ dnExponential(10.0)\n    moves.append( mvScale(bl[i]) )\n}\npsi := fnTreeAssembly(topology, bl)\nseq ~ dnPhyloCTMC(tree=psi, Q=Q, type=\"DNA\")\nseq.clamp(data)\nmymodel = model(seq)",
+        "replicates": 0
+      },
+      "code": "PPS1009"
+    },
+    {
+      "name": "bad thinning",
+      "spec": {
+        "analysis": "pps",
+        "base_script": "data <- readDiscreteCharacterData(\"data/dna.nex\")\ntaxa <- data.taxa()\nnum_taxa <- data.ntaxa()\nnum_branches <- 2 * num_taxa - 3\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\nQ <- fnJC(4)\ntopology ~ dnUniformTopology(taxa)\nmoves.append( mvNNI(topology, weight=num_taxa/2.0) )\nfor (i in 1:num_branches) {\n    bl[i] ~ dnExponential(10.0)\n    moves.append( mvScale(bl[i]) )\n}\npsi := fnTreeAssembly(topology, bl)\nseq ~ dnPhyloCTMC(tree=psi, Q=Q, type=\"DNA\")\nseq.clamp(data)\nmymodel = model(seq)",
+        "thinning": 0
+      },
+      "code": "PPS1010"
+    }
+  ]
+}

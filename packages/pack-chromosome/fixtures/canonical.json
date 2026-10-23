@@ -1,0 +1,96 @@
+{
+  "prefix": "CHR",
+  "canonical": [
+    {
+      "name": "chromevol",
+      "golden": "chromevol.Rev",
+      "spec": {
+        "analysis": "chromevol",
+        "name": "chromevol_demo",
+        "data": {
+          "counts_file": "data/chromo.tsv",
+          "tree_file": "data/tree.tre"
+        },
+        "model": {
+          "max_chromosome": 30
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "bichrom",
+      "golden": "bichrom.Rev",
+      "spec": {
+        "analysis": "bichrom",
+        "name": "bichrom_demo",
+        "data": {
+          "counts_file": "data/chromo.tsv",
+          "tree_file": "data/tree.tre"
+        },
+        "model": {
+          "max_chromosome": 30
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "chromosse",
+      "golden": "chromosse.Rev",
+      "spec": {
+        "analysis": "chromosse",
+        "name": "chromosse_demo",
+        "data": {
+          "counts_file": "data/chromo.tsv",
+          "tree_file": "data/tree.tre"
+        },
+        "model": {
+          "max_chromosome": 30
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "bad analysis",
+      "spec": {
+        "analysis": "nope",
+        "data": {
+          "counts_file": "c.tsv",
+          "tree_file": "t.tre"
+        }
+      },
+      "code": "CHR1001"
+    },
+    {
+      "name": "missing counts",
+      "spec": {
+        "analysis": "chromevol",
+        "data": {
+          "tree_file": "t.tre"
+        }
+      },
+      "code": "CHR1003"
+    },
+    {
+      "name": "max too low",
+      "spec": {
+        "analysis": "chromevol",
+        "data": {
+          "counts_file": "c.tsv",
+          "tree_file": "t.tre"
+        },
+        "model": {
+          "max_chromosome": 2
+        }
+      },
+      "code": "CHR1005"
+    }
+  ]
+}

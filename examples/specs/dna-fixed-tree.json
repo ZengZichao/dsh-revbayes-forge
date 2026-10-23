@@ -1,0 +1,21 @@
+{
+  "analysis": "dna",
+  "name": "dna_fixed_tree",
+  "data": { "file": "data/demo_dna.nex", "type": "DNA" },
+  "substitution": {
+    "model": "HKY",
+    "kappa": "estimated",
+    "base_frequencies": "estimated"
+  },
+  "tree": {
+    "source": "fixed",
+    "file": "data/demo.tre",
+    "branch_lengths": "fixed"
+  },
+  "mcmc": {
+    "generations": 20000,
+    "sample_every": 10,
+    "screen_every": 100,
+    "output_dir": "output"
+  }
+}

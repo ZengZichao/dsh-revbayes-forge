@@ -1,0 +1,27 @@
+{
+  "analysis": "dna",
+  "name": "dna_gtr_g_i",
+  "data": { "file": "data/demo_dna.nex", "type": "DNA" },
+  "substitution": {
+    "model": "GTR",
+    "base_frequencies": [0.30, 0.20, 0.20, 0.30],
+    "exchangeabilities": [1.0, 2.0, 1.0, 1.0, 2.0, 1.0],
+    "gamma": { "shape": "estimated", "categories": 4 },
+    "invariant_sites": "estimated"
+  },
+  "tree": {
+    "source": "uniform",
+    "outgroup": ["Taxon_A", "Taxon_B"],
+    "branch_lengths": "estimated",
+    "prior": "exponential",
+    "prior_arguments": [10]
+  },
+  "mcmc": {
+    "generations": 50000,
+    "nruns": 2,
+    "sample_every": 50,
+    "screen_every": 100,
+    "combine": "mixed",
+    "output_dir": "output"
+  }
+}

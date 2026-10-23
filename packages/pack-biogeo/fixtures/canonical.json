@@ -1,0 +1,92 @@
+{
+  "prefix": "BIO",
+  "canonical": [
+    {
+      "name": "dec",
+      "golden": "dec.Rev",
+      "spec": {
+        "analysis": "dec",
+        "name": "dec_demo",
+        "data": {
+          "range_file": "data/ranges.nex",
+          "tree_file": "data/tree.tre"
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "geosse",
+      "golden": "geosse.Rev",
+      "spec": {
+        "analysis": "geosse",
+        "name": "geosse_demo",
+        "data": {
+          "range_file": "data/ranges.nex",
+          "tree_file": "data/tree.tre"
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "fig",
+      "golden": "fig.Rev",
+      "spec": {
+        "analysis": "fig",
+        "name": "fig_demo",
+        "data": {
+          "range_file": "data/ranges.nex",
+          "tree_file": "data/tree.tre",
+          "features_file": "data/features.tsv"
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "bad analysis",
+      "spec": {
+        "analysis": "nope"
+      },
+      "code": "BIO1001"
+    },
+    {
+      "name": "missing range",
+      "spec": {
+        "analysis": "dec",
+        "data": {
+          "tree_file": "t.tre"
+        }
+      },
+      "code": "BIO1003"
+    },
+    {
+      "name": "fig without features",
+      "spec": {
+        "analysis": "fig",
+        "data": {
+          "range_file": "r.nex",
+          "tree_file": "t.tre"
+        }
+      },
+      "code": "BIO1006"
+    },
+    {
+      "name": "timefig without epochs",
+      "spec": {
+        "analysis": "timefig",
+        "data": {
+          "range_file": "r.nex",
+          "tree_file": "t.tre"
+        }
+      },
+      "code": "BIO1008"
+    }
+  ]
+}

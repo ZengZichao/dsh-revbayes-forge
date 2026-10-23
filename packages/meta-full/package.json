@@ -1,0 +1,13 @@
+{
+  "name": "dsh-revbayes-forge-full",
+  "version": "0.1.0",
+  "description": "Development meta package for the RevBayes Forge workspace. It is not a DSH bundle; core bundles all packs.",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "dsh-revbayes-forge": "0.1.0"
+  },
+  "files": [
+    "README.md"
+  ]
+}

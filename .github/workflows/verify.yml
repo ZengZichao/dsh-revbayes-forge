@@ -1,0 +1,44 @@
+name: verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm run coverage:check
+
+  runtime:
+    runs-on: [self-hosted, revbayes]
+    if: ${{ vars.REVBAYES_BIN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Real RevBayes dry + smoke fixtures
+        env:
+          REVBAYES_BIN: ${{ vars.REVBAYES_BIN }}
+        run: node --test packages/pack-fbd/test/runtime.test.mjs packages/pack-dating-clock/test/runtime.test.mjs packages/pack-coalescent-demography/test/runtime.test.mjs packages/pack-diversification/test/runtime.test.mjs packages/pack-continuous-traits/test/runtime.test.mjs packages/pack-ted/test/runtime.test.mjs
+
+  dsh-install:
+    runs-on: ubuntu-latest
+    if: ${{ vars.DSH_CLI == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run verify:dsh

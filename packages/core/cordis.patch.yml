@@ -1,0 +1,26 @@
+# dsh-revbayes-forge — bundle layer.
+#
+# `dsh plugin --profile <name> add <this package>` installs the package and
+# mounts the host half below. Optional settings live under `config:` and are
+# documented in README.md:
+#
+#   revbayesBinary: /usr/local/bin/rb   # empty = REVBAYES_BIN/PATH lookup
+#   allowRuntime: true                  # dry/smoke validation allowed
+#   defaultMode: auto                   # auto | static | dry | smoke
+#   defaultRuntimeMode: dry             # dry | smoke
+#   timeoutMs: 120000
+#   maxRunGenerations: 100
+#   tempRoot: ""                        # empty = OS temp directory
+#   catalogPath: ""                     # empty = bundled help catalog
+#   strict: false
+#   checkFiles: true
+#   maxDiagnostics: 50
+#   maxScriptBytes: 1048576
+#   allowWriteOutsideWorkspace: false
+#   enabledPacks: default               # default | all | none | [fbd, dating]
+#   packConfig: {}                      # per-pack configuration, keyed by pack id
+#
+- insert:
+    - id: dsh-revbayes-forge
+      name: dsh-revbayes-forge
+      config: {}

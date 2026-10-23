@@ -1,0 +1,56 @@
+{
+  "prefix": "SEL",
+  "canonical": [
+    {
+      "name": "stepping_stone",
+      "golden": "stepping_stone.Rev",
+      "spec": {
+        "analysis": "stepping_stone",
+        "name": "sel_ss",
+        "base_script": "data <- readDiscreteCharacterData(\"data/dna.nex\")\ntaxa <- data.taxa()\nnum_taxa <- data.ntaxa()\nnum_branches <- 2 * num_taxa - 3\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\nQ <- fnJC(4)\ntopology ~ dnUniformTopology(taxa)\nmoves.append( mvNNI(topology, weight=num_taxa/2.0) )\nfor (i in 1:num_branches) {\n    bl[i] ~ dnExponential(10.0)\n    moves.append( mvScale(bl[i]) )\n}\npsi := fnTreeAssembly(topology, bl)\nseq ~ dnPhyloCTMC(tree=psi, Q=Q, type=\"DNA\")\nseq.clamp(data)\nmymodel = model(seq)",
+        "cats": 10,
+        "burnin": 100,
+        "generations": 100
+      }
+    },
+    {
+      "name": "path_sampling",
+      "golden": "path_sampling.Rev",
+      "spec": {
+        "analysis": "path_sampling",
+        "name": "sel_ps",
+        "base_script": "data <- readDiscreteCharacterData(\"data/dna.nex\")\ntaxa <- data.taxa()\nnum_taxa <- data.ntaxa()\nnum_branches <- 2 * num_taxa - 3\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\nQ <- fnJC(4)\ntopology ~ dnUniformTopology(taxa)\nmoves.append( mvNNI(topology, weight=num_taxa/2.0) )\nfor (i in 1:num_branches) {\n    bl[i] ~ dnExponential(10.0)\n    moves.append( mvScale(bl[i]) )\n}\npsi := fnTreeAssembly(topology, bl)\nseq ~ dnPhyloCTMC(tree=psi, Q=Q, type=\"DNA\")\nseq.clamp(data)\nmymodel = model(seq)",
+        "cats": 10,
+        "burnin": 100,
+        "generations": 100
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "no base",
+      "spec": {
+        "analysis": "stepping_stone"
+      },
+      "code": "SEL1001"
+    },
+    {
+      "name": "bad cats",
+      "spec": {
+        "analysis": "stepping_stone",
+        "base_script": "data <- readDiscreteCharacterData(\"data/dna.nex\")\ntaxa <- data.taxa()\nnum_taxa <- data.ntaxa()\nnum_branches <- 2 * num_taxa - 3\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\nQ <- fnJC(4)\ntopology ~ dnUniformTopology(taxa)\nmoves.append( mvNNI(topology, weight=num_taxa/2.0) )\nfor (i in 1:num_branches) {\n    bl[i] ~ dnExponential(10.0)\n    moves.append( mvScale(bl[i]) )\n}\npsi := fnTreeAssembly(topology, bl)\nseq ~ dnPhyloCTMC(tree=psi, Q=Q, type=\"DNA\")\nseq.clamp(data)\nmymodel = model(seq)",
+        "cats": 1
+      },
+      "code": "SEL1009"
+    },
+    {
+      "name": "escaping output dir",
+      "spec": {
+        "analysis": "stepping_stone",
+        "base_script": "data <- readDiscreteCharacterData(\"data/dna.nex\")\ntaxa <- data.taxa()\nnum_taxa <- data.ntaxa()\nnum_branches <- 2 * num_taxa - 3\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\nQ <- fnJC(4)\ntopology ~ dnUniformTopology(taxa)\nmoves.append( mvNNI(topology, weight=num_taxa/2.0) )\nfor (i in 1:num_branches) {\n    bl[i] ~ dnExponential(10.0)\n    moves.append( mvScale(bl[i]) )\n}\npsi := fnTreeAssembly(topology, bl)\nseq ~ dnPhyloCTMC(tree=psi, Q=Q, type=\"DNA\")\nseq.clamp(data)\nmymodel = model(seq)",
+        "output_dir": "../evil"
+      },
+      "code": "SEL1014"
+    }
+  ]
+}

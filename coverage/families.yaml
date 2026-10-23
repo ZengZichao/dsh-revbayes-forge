@@ -1,0 +1,91 @@
+families:
+  - id: standard_dna
+    tutorials: [ctmc]
+    scripts: 5
+    owners: [core]
+    maturity: verified
+  - id: morphology_tree
+    tutorials: [morph_tree]
+    scripts: 12
+    owners: [core, pack-morphology-advanced]
+    maturity: mixed
+  - id: morphology_asr
+    tutorials: [morph_ase, morph]
+    scripts: 15
+    owners: [pack-morphology-advanced]
+    maturity: golden
+  - id: partition
+    tutorials: [partition]
+    scripts: 6
+    owners: [core]
+    maturity: verified
+  - id: dating_clock
+    tutorials: [dating, clocks, relative_time_constraints, sequential_bayes, timefig_dating]
+    scripts: 43
+    owners: [pack-dating-clock]
+    maturity: mixed
+  - id: coalescent
+    tutorials: [coalescent, species_tree]
+    scripts: 44
+    owners: [pack-coalescent-demography]
+    maturity: verified
+  - id: fbd_ted
+    tutorials: [fbd, fbd_simple, fbd_range, ted_workflow]
+    scripts: 43
+    owners: [pack-fbd, pack-ted]
+    maturity: verified
+  - id: diversification
+    tutorials: [divrate, sse]
+    scripts: 22
+    owners: [pack-diversification]
+    maturity: verified
+  - id: continuous_traits
+    tutorials: [cont_traits]
+    scripts: 24
+    owners: [pack-continuous-traits]
+    maturity: verified
+  - id: biogeo
+    tutorials: [biogeo, biogeo_hoehna, geosse, geosse_orig, multifig, multifig_orig, timefig_simple, timefig_orig]
+    scripts: 12
+    owners: [pack-biogeo]
+    maturity: golden
+  - id: chromosome
+    tutorials: [chromo]
+    scripts: 6
+    owners: [pack-chromosome]
+    maturity: golden
+  - id: selection_codon
+    tutorials: [selection]
+    scripts: 3
+    owners: [pack-molecular-selection]
+    maturity: golden
+  - id: pomo
+    tutorials: [pomos, pomobalance]
+    scripts: 2
+    owners: [pack-molecular-selection]
+    maturity: golden
+  - id: host_repertoire
+    tutorials: [host_rep]
+    scripts: 1
+    owners: [pack-host-repertoire]
+    maturity: experimental
+  - id: stairwayplot
+    tutorials: [stairwayplot]
+    scripts: 5
+    owners: [pack-coalescent-demography]
+    maturity: verified
+  - id: pps
+    tutorials: [model_testing_pps, model_testing_ppred_inf, pps_morpho, intro_posterior_prediction]
+    scripts: 36
+    owners: [pack-pps]
+    maturity: golden
+  - id: model_selection
+    tutorials: [model_selection_bayes_factors]
+    scripts: 9
+    owners: [pack-model-selection]
+    maturity: golden
+  - id: basics
+    tutorials: [mcmc, intro, mcmc_troubleshooting, docker, tutorial_structure]
+    scripts: 16
+    owners: [core]
+    maturity: validation

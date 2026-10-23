@@ -1,0 +1,32 @@
+morpho <- readDiscreteCharacterData("data/morph.nex")
+taxa <- morpho.taxa()
+num_taxa <- morpho.ntaxa()
+num_branches <- 2 * num_taxa - 3
+moves    = VectorMoves()
+monitors = VectorMonitors()
+Q <- fnJC(2)
+topology ~ dnUniformTopology(taxa)
+moves.append( mvNNI(topology, weight=num_taxa/2.0) )
+for (i in 1:num_branches) {
+    bl[i] ~ dnExponential(10.0)
+    moves.append( mvScale(bl[i]) )
+}
+psi := fnTreeAssembly(topology, bl)
+seq ~ dnPhyloCTMC(tree=psi, Q=Q, type="Standard")
+seq.clamp(morpho)
+mymodel = model(seq)
+
+# Posterior predictive simulation
+pps_monitors = VectorMonitors()
+pps_monitors.append( mnStochasticVariable(filename="output/pps/pps_morph_demo.var", printgen=10) )
+pps_monitors.append( mnScreen(printgen=100) )
+
+pps_mcmc = mcmc(model=mymodel, monitors=pps_monitors, moves=moves)
+pps_mcmc.run(generations=2000, tuningInterval=100)
+trace = readStochasticVariableTrace("output/pps/pps_morph_demo.var", separator="\t")
+pps = posteriorPredictiveSimulation(mymodel, directory="output/pps/pps_morph_demo_post_sims", trace=trace)
+pps.run(thinning=2)
+
+# Simulate the requested number of replicate data sets
+num_post_sims = 20
+q()

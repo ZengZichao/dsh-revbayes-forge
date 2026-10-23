@@ -1,0 +1,98 @@
+{
+  "prefix": "COA",
+  "canonical": [
+    {
+      "name": "multispecies_coalescent",
+      "golden": "multispecies_coalescent.Rev",
+      "spec": {
+        "analysis": "multispecies_coalescent",
+        "name": "msc_demo",
+        "data": {
+          "file": "data/dna.nex",
+          "species_tree": "data/tree.tre"
+        },
+        "substitution": {
+          "model": "JC"
+        },
+        "demography": {
+          "population_size": 0.01
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "skyline",
+      "golden": "skyline.Rev",
+      "spec": {
+        "analysis": "skyline",
+        "name": "skyline_demo",
+        "data": {
+          "file": "data/dna.nex"
+        },
+        "tree": {
+          "file": "data/tree.tre"
+        },
+        "substitution": {
+          "model": "HKY"
+        },
+        "demography": {
+          "windows": 4
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "stairwayplot",
+      "golden": "stairwayplot.Rev",
+      "spec": {
+        "analysis": "stairwayplot",
+        "name": "stairway_demo",
+        "sfs": [
+          100,
+          50,
+          30,
+          20,
+          10
+        ],
+        "intervals": 4,
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "bad analysis",
+      "spec": {
+        "analysis": "nope"
+      },
+      "code": "COA1001"
+    },
+    {
+      "name": "msc without species tree",
+      "spec": {
+        "analysis": "multispecies_coalescent",
+        "data": {
+          "file": "x.nex"
+        }
+      },
+      "code": "COA1013"
+    },
+    {
+      "name": "short sfs",
+      "spec": {
+        "analysis": "stairwayplot",
+        "sfs": [
+          1,
+          2
+        ]
+      },
+      "code": "COA1007"
+    }
+  ]
+}

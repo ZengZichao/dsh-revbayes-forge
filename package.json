@@ -1,0 +1,30 @@
+{
+  "name": "dsh-revbayes-forge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Monorepo for the RevBayes Forge DSH core plugin, model packs, and full meta package.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.mjs",
+    "check": "node scripts/check.mjs",
+    "verify": "npm run check && npm test && npm run coverage:check",
+    "coverage": "node scripts/coverage-report.mjs",
+    "coverage:check": "node scripts/coverage-report.mjs --check",
+    "goldens": "node scripts/generate-goldens.mjs",
+    "corpus": "node scripts/validate-corpus.mjs",
+    "verify:dsh": "node scripts/verify-dsh-install.mjs",
+    "test:runtime": "npm run test:runtime --workspaces --if-present",
+    "runtime:examples": "node packages/core/scripts/validate-runtime-examples.mjs",
+    "build:catalog": "node packages/core/scripts/build-catalog.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@deepseek-ai/dsh-tools": "0.2.1-rc.2",
+    "yaml": "^2.8.1"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "prefix": "TRA",
+  "canonical": [
+    {
+      "name": "bm",
+      "golden": "bm.Rev",
+      "spec": {
+        "analysis": "bm",
+        "name": "bm_demo",
+        "data": {
+          "file": "data/traits.nex"
+        },
+        "tree": {
+          "file": "data/tree.tre"
+        },
+        "model": {
+          "sigma2": 0.1
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "ou",
+      "golden": "ou.Rev",
+      "spec": {
+        "analysis": "ou",
+        "name": "ou_demo",
+        "data": {
+          "file": "data/traits.nex"
+        },
+        "tree": {
+          "file": "data/tree.tre"
+        },
+        "model": {
+          "sigma2": 0.1,
+          "alpha": 1,
+          "theta": 0
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "multivariate",
+      "golden": "multivariate.Rev",
+      "spec": {
+        "analysis": "multivariate",
+        "name": "mvb_demo",
+        "data": {
+          "file": "data/traits.nex"
+        },
+        "tree": {
+          "file": "data/tree.tre"
+        },
+        "model": {
+          "dimensions": 2
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "bad analysis",
+      "spec": {
+        "analysis": "nope",
+        "data": {
+          "file": "t.nex"
+        },
+        "tree": {
+          "file": "t.tre"
+        }
+      },
+      "code": "TRA1001"
+    },
+    {
+      "name": "missing tree",
+      "spec": {
+        "analysis": "bm",
+        "data": {
+          "file": "t.nex"
+        }
+      },
+      "code": "TRA1002"
+    },
+    {
+      "name": "bad sigma",
+      "spec": {
+        "analysis": "bm",
+        "data": {
+          "file": "t.nex"
+        },
+        "tree": {
+          "file": "t.tre"
+        },
+        "model": {
+          "sigma2": 0
+        }
+      },
+      "code": "TRA1004"
+    },
+    {
+      "name": "bad dimensions",
+      "spec": {
+        "analysis": "multivariate",
+        "data": {
+          "file": "t.nex"
+        },
+        "tree": {
+          "file": "t.tre"
+        },
+        "model": {
+          "dimensions": 1
+        }
+      },
+      "code": "TRA1007"
+    }
+  ]
+}

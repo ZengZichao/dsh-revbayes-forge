@@ -1,0 +1,116 @@
+{
+  "prefix": "DAT",
+  "canonical": [
+    {
+      "name": "strict_clock",
+      "golden": "strict_clock.Rev",
+      "spec": {
+        "analysis": "strict_clock",
+        "name": "dating_strict",
+        "data": {
+          "file": "data/dna.nex"
+        },
+        "tree": {
+          "file": "data/tree.tre"
+        },
+        "substitution": {
+          "model": "GTR"
+        },
+        "clock": {
+          "model": "strict",
+          "rate": 1
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "relaxed_clock",
+      "golden": "relaxed_clock.Rev",
+      "spec": {
+        "analysis": "relaxed_clock",
+        "name": "dating_relaxed",
+        "data": {
+          "file": "data/dna.nex"
+        },
+        "tree": {
+          "file": "data/tree.tre"
+        },
+        "substitution": {
+          "model": "HKY"
+        },
+        "clock": {
+          "model": "relaxed_lognormal"
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "relative_constraints",
+      "golden": "relative_constraints.Rev",
+      "spec": {
+        "analysis": "relative_constraints",
+        "name": "dating_relative",
+        "data": {
+          "file": "data/dna.nex"
+        },
+        "tree": {
+          "file": "data/tree.tre"
+        },
+        "substitution": {
+          "model": "JC"
+        },
+        "constraints": {
+          "file": "data/constraints.txt"
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "bad analysis",
+      "spec": {
+        "analysis": "nope",
+        "data": {
+          "file": "x.nex"
+        },
+        "tree": {
+          "file": "t.tre"
+        }
+      },
+      "code": "DAT1001"
+    },
+    {
+      "name": "missing tree",
+      "spec": {
+        "analysis": "strict_clock",
+        "data": {
+          "file": "x.nex"
+        }
+      },
+      "code": "DAT1003"
+    },
+    {
+      "name": "bad clock rate",
+      "spec": {
+        "analysis": "strict_clock",
+        "data": {
+          "file": "x.nex"
+        },
+        "tree": {
+          "file": "t.tre"
+        },
+        "clock": {
+          "rate": 0
+        }
+      },
+      "code": "DAT1010"
+    }
+  ]
+}

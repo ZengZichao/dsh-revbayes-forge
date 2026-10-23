@@ -1,0 +1,17 @@
+{
+  "name": "partition_dna",
+  "data": {
+    "partitions": [
+      { "name": "cytb", "file": "data/demo_dna.nex", "type": "DNA", "taxa": ["Taxon_A", "Taxon_B", "Taxon_C", "Taxon_D"] },
+      { "name": "coi", "file": "data/demo_dna.nex", "type": "DNA", "taxa": ["Taxon_A", "Taxon_B", "Taxon_C", "Taxon_D"] }
+    ]
+  },
+  "substitution": {
+    "per_partition": {
+      "cytb": { "model": "GTR", "gamma": { "categories": 4 } },
+      "coi": { "model": "HKY" }
+    }
+  },
+  "tree": { "source": "uniform" },
+  "mcmc": { "generations": 10000, "output_dir": "output" }
+}

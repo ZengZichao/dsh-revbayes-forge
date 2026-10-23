@@ -1,0 +1,29 @@
+{
+  "name": "dsh-revbayes-forge-pack-coalescent-demography",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/manifest.js",
+  "exports": {
+    ".": "./src/manifest.js",
+    "./manifest": "./src/manifest.js",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "test:runtime": "node --test test/runtime.test.mjs"
+  },
+  "files": [
+    "src/manifest.js",
+    "fixtures/",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "GPL-3.0",
+  "description": "Development fixture package for the coalescent-demography model pack bundled inside dsh-revbayes-forge.",
+  "dependencies": {
+    "dsh-revbayes-forge": "0.1.0"
+  }
+}

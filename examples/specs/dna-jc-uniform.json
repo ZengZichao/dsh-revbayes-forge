@@ -1,0 +1,13 @@
+{
+  "analysis": "dna",
+  "name": "dna_jc_uniform",
+  "data": { "file": "data/demo_dna.nex", "type": "DNA" },
+  "substitution": { "model": "JC" },
+  "tree": { "source": "uniform", "prior": "exponential", "prior_arguments": [10] },
+  "mcmc": {
+    "generations": 20000,
+    "sample_every": 10,
+    "screen_every": 100,
+    "output_dir": "output"
+  }
+}

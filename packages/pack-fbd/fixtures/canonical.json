@@ -1,0 +1,101 @@
+{
+  "prefix": "FBD",
+  "canonical": [
+    {
+      "name": "fbd",
+      "golden": "fbd.Rev",
+      "spec": {
+        "analysis": "fbd",
+        "name": "fbd_demo",
+        "data": {
+          "file": "data/bears_morphology.nex",
+          "taxa_file": "data/bears_taxa.tsv",
+          "matrix_file": "data/bears_morphology.nex",
+          "type": "Standard",
+          "state_count": 2
+        },
+        "substitution": {
+          "model": "Mk",
+          "gamma": {
+            "categories": 4
+          }
+        },
+        "fbd": {
+          "lambda": 1,
+          "mu": 0.2,
+          "psi": 0.1,
+          "rho": 1,
+          "origin": 45
+        },
+        "mcmc": {
+          "generations": 20000,
+          "sample_every": 10
+        }
+      }
+    },
+    {
+      "name": "fbd_range",
+      "golden": "fbd_range.Rev",
+      "spec": {
+        "analysis": "fbd_range",
+        "name": "fbd_range_demo",
+        "data": {
+          "file": "data/dinosaur_ranges.tsv",
+          "fossil_counts_file": "data/dinosaur_fossil_counts.tsv"
+        },
+        "fbd": {
+          "rho": 0,
+          "timeline": [
+            100,
+            145,
+            201
+          ]
+        },
+        "mcmc": {
+          "generations": 30000,
+          "sample_every": 10
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "missing taxa file",
+      "spec": {
+        "analysis": "fbd",
+        "data": {
+          "file": "x.nex"
+        }
+      },
+      "code": "FBD1004"
+    },
+    {
+      "name": "mu exceeds lambda",
+      "spec": {
+        "analysis": "fbd",
+        "data": {
+          "file": "x.nex",
+          "taxa_file": "t.tsv",
+          "matrix_file": "x.nex"
+        },
+        "fbd": {
+          "lambda": 0.1,
+          "mu": 0.5
+        }
+      },
+      "code": "FBD1017"
+    },
+    {
+      "name": "range without timeline",
+      "spec": {
+        "analysis": "fbd_range",
+        "data": {
+          "file": "x.tsv",
+          "fossil_counts_file": "c.tsv"
+        },
+        "fbd": {}
+      },
+      "code": "FBD1018"
+    }
+  ]
+}

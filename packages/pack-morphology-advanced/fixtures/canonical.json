@@ -1,0 +1,101 @@
+{
+  "prefix": "MOR",
+  "canonical": [
+    {
+      "name": "mkv",
+      "golden": "mkv.Rev",
+      "spec": {
+        "analysis": "mkv",
+        "name": "mkv_demo",
+        "data": {
+          "file": "data/morph.nex",
+          "state_count": 2
+        },
+        "tree": {
+          "file": "data/tree.tre",
+          "type": "time"
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "ancestral_state",
+      "golden": "ancestral_state.Rev",
+      "spec": {
+        "analysis": "ancestral_state",
+        "name": "asr_demo",
+        "data": {
+          "file": "data/morph.nex",
+          "state_count": 2
+        },
+        "tree": {
+          "file": "data/tree.tre",
+          "type": "time"
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "stochastic_map",
+      "golden": "stochastic_map.Rev",
+      "spec": {
+        "analysis": "stochastic_map",
+        "name": "smap_demo",
+        "data": {
+          "file": "data/morph.nex",
+          "state_count": 2
+        },
+        "tree": {
+          "file": "data/tree.tre",
+          "type": "time"
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "bad analysis",
+      "spec": {
+        "analysis": "nope",
+        "data": {
+          "file": "m.nex"
+        },
+        "tree": {
+          "file": "t.tre"
+        }
+      },
+      "code": "MOR1001"
+    },
+    {
+      "name": "missing tree",
+      "spec": {
+        "analysis": "mkv",
+        "data": {
+          "file": "m.nex"
+        }
+      },
+      "code": "MOR1003"
+    },
+    {
+      "name": "bad state count",
+      "spec": {
+        "analysis": "mkv",
+        "data": {
+          "file": "m.nex",
+          "state_count": 1
+        },
+        "tree": {
+          "file": "t.tre"
+        }
+      },
+      "code": "MOR1002"
+    }
+  ]
+}

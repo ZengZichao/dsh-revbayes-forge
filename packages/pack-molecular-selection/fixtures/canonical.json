@@ -1,0 +1,84 @@
+{
+  "prefix": "MOL",
+  "canonical": [
+    {
+      "name": "codon_selection",
+      "golden": "codon_selection.Rev",
+      "spec": {
+        "analysis": "codon_selection",
+        "name": "codon_demo",
+        "data": {
+          "file": "data/codon.nex"
+        },
+        "tree": {
+          "file": "data/tree.tre"
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "pomo",
+      "golden": "pomo.Rev",
+      "spec": {
+        "analysis": "pomo",
+        "name": "pomo_demo",
+        "data": {
+          "file": "data/pomo.txt"
+        },
+        "tree": {
+          "file": "data/tree.tre"
+        },
+        "model": {
+          "virtual_ne": 10,
+          "num_states": 10
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "bad analysis",
+      "spec": {
+        "analysis": "nope",
+        "data": {
+          "file": "x.nex"
+        },
+        "tree": {
+          "file": "t.tre"
+        }
+      },
+      "code": "MOL1001"
+    },
+    {
+      "name": "missing tree",
+      "spec": {
+        "analysis": "pomo",
+        "data": {
+          "file": "x.txt"
+        }
+      },
+      "code": "MOL1002"
+    },
+    {
+      "name": "bad virtual ne",
+      "spec": {
+        "analysis": "pomo",
+        "data": {
+          "file": "x.txt"
+        },
+        "tree": {
+          "file": "t.tre"
+        },
+        "model": {
+          "virtual_ne": 1
+        }
+      },
+      "code": "MOL1003"
+    }
+  ]
+}

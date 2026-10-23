@@ -1,0 +1,66 @@
+{
+  "name": "dsh-revbayes-forge",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness (DSH) plugin that generates, statically checks, and dry-run validates RevBayes scripts, and hosts family model packs.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./client": "./lib/client.js",
+    "./pack-api": "./src/packs/spec.js",
+    "./packs": "./src/packs/builtin/index.js",
+    "./packs/*": "./src/packs/builtin/*.js",
+    "./blocks": "./src/blocks/index.js",
+    "./testing": "./src/testing/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/",
+    "lib/",
+    "scripts/",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    },
+    "engines": {
+      "dsh": ">=0.2.1-rc.2"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "node scripts/check.mjs",
+    "build:catalog": "node scripts/build-catalog.mjs",
+    "verify": "npm run check && npm test",
+    "corpus": "node scripts/validate-corpus.mjs",
+    "examples": "node scripts/generate-examples.mjs",
+    "runtime:examples": "node scripts/validate-runtime-examples.mjs",
+    "test:runtime": "node --test test/runtime.test.js"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "revbayes",
+    "phylogenetics",
+    "script-generator",
+    "validation"
+  ],
+  "license": "GPL-3.0",
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "0.2.1-rc.2"
+  },
+  "devDependencies": {
+    "@deepseek-ai/dsh-tools": "0.2.1-rc.2"
+  }
+}

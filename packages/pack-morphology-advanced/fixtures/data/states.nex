@@ -1,0 +1,11 @@
+#NEXUS
+BEGIN DATA;
+    DIMENSIONS NTAX=4 NCHAR=2;
+    FORMAT DATATYPE=STANDARD MISSING=? GAP=-;
+    MATRIX
+        A 01
+        B 01
+        C 10
+        D 10
+    ;
+END;

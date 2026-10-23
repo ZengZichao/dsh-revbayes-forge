@@ -1,0 +1,33 @@
+{
+  "prefix": "TED",
+  "canonical": [
+    {
+      "name": "ted",
+      "golden": "ted.Rev",
+      "spec": {
+        "analysis": "ted",
+        "name": "ted_demo",
+        "base_spec": {
+          "analysis": "fbd",
+          "data": {
+            "file": "data/bears_morphology.nex",
+            "taxa_file": "data/bears_taxa.tsv",
+            "matrix_file": "data/bears_morphology.nex",
+            "type": "Standard",
+            "state_count": 2
+          },
+          "substitution": { "model": "Mk" },
+          "fbd": { "lambda": 1.0, "mu": 0.2, "psi": 0.1, "rho": 1.0, "origin": 45.0 }
+        },
+        "extant_taxa": ["A", "B", "C"],
+        "calibrations": [{ "name": "root_calibration", "min": 30, "max": 60 }],
+        "mcmc": { "generations": 20000, "sample_every": 10 }
+      }
+    }
+  ],
+  "invalid": [
+    { "name": "bad analysis", "spec": { "analysis": "nope" }, "code": "TED1001" },
+    { "name": "missing base spec", "spec": { "analysis": "ted" }, "code": "TED1007" },
+    { "name": "no forge service", "spec": { "analysis": "ted" }, "code": "TED1005" }
+  ]
+}

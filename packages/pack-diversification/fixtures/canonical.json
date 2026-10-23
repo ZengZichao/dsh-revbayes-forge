@@ -1,0 +1,87 @@
+{
+  "prefix": "DIV",
+  "canonical": [
+    {
+      "name": "birthdeath",
+      "golden": "birthdeath.Rev",
+      "spec": {
+        "analysis": "birthdeath",
+        "name": "bd_demo",
+        "data": {
+          "tree": "data/tree.tre"
+        },
+        "model": {
+          "birth_rate": 0.1,
+          "death_rate": 0.01,
+          "sampling": 1
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    },
+    {
+      "name": "sse",
+      "golden": "sse.Rev",
+      "spec": {
+        "analysis": "sse",
+        "name": "sse_demo",
+        "data": {
+          "tree": "data/tree.tre",
+          "states_file": "data/states.nex",
+          "num_states": 2
+        },
+        "model": {
+          "sampling": 0.5
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "bad analysis",
+      "spec": {
+        "analysis": "nope",
+        "data": {
+          "tree": "t.tre"
+        }
+      },
+      "code": "DIV1001"
+    },
+    {
+      "name": "missing tree",
+      "spec": {
+        "analysis": "birthdeath",
+        "data": {}
+      },
+      "code": "DIV1003"
+    },
+    {
+      "name": "death exceeds birth",
+      "spec": {
+        "analysis": "birthdeath",
+        "data": {
+          "tree": "t.tre"
+        },
+        "model": {
+          "birth_rate": 0.1,
+          "death_rate": 0.5
+        }
+      },
+      "code": "DIV1011"
+    },
+    {
+      "name": "sse without states",
+      "spec": {
+        "analysis": "sse",
+        "data": {
+          "tree": "t.tre"
+        }
+      },
+      "code": "DIV1004"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "analysis": "morphology",
+  "name": "morphology_mk",
+  "data": { "file": "data/demo_morph.nex", "type": "Standard", "state_count": 2 },
+  "substitution": {
+    "gamma": { "shape": "estimated", "categories": 4 }
+  },
+  "tree": {
+    "source": "uniform",
+    "branch_lengths": "estimated",
+    "prior": "exponential",
+    "prior_arguments": [10]
+  },
+  "mcmc": {
+    "generations": 20000,
+    "sample_every": 10,
+    "screen_every": 100,
+    "output_dir": "output"
+  }
+}

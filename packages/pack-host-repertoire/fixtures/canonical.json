@@ -1,0 +1,55 @@
+{
+  "prefix": "HOS",
+  "canonical": [
+    {
+      "name": "host_repertoire",
+      "golden": "host_repertoire.Rev",
+      "spec": {
+        "analysis": "host_repertoire",
+        "name": "host_demo",
+        "data": {
+          "host_tree": "data/host.tre",
+          "parasite_tree": "data/parasite.tre",
+          "association_file": "data/assoc.nex"
+        },
+        "model": {
+          "mu": 0.1
+        },
+        "mcmc": {
+          "generations": 20000
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "bad analysis",
+      "spec": {
+        "analysis": "nope"
+      },
+      "code": "HOS1001"
+    },
+    {
+      "name": "missing host tree",
+      "spec": {
+        "analysis": "host_repertoire",
+        "data": {
+          "parasite_tree": "p.tre",
+          "association_file": "a.nex"
+        }
+      },
+      "code": "HOS1002"
+    },
+    {
+      "name": "missing association matrix",
+      "spec": {
+        "analysis": "host_repertoire",
+        "data": {
+          "host_tree": "h.tre",
+          "parasite_tree": "p.tre"
+        }
+      },
+      "code": "HOS1004"
+    }
+  ]
+}
